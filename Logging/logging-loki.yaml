@@ -28,7 +28,7 @@ spec:
       type: s3
     tls:
       caKey: service-ca.crt
-      caName: s3-ca-cert
+      caName: s3-ca-certopenshift-service-ca.crt
   storageClassName: iscsi
   tenants:
     mode: openshift-logging
