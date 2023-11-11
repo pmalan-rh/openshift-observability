@@ -1,0 +1,21 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: s3
+  namespace: s3-storage
+spec:
+  clusterIP: 172.30.176.5
+  ipFamilies:
+    - IPv4
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+  internalTrafficPolicy: Cluster
+  clusterIPs:
+    - 172.30.176.5
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: s3-storage-minio

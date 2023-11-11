@@ -1,0 +1,62 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: s3-storage-minio
+  namespace: s3-storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: s3-storage-minio
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: s3-storage-minio
+      annotations:
+        openshift.openshift.io/restartedAt: '2023-11-07T18:16:58.785Z'
+    spec:
+      volumes:
+        - name: s3-data
+          persistentVolumeClaim:
+            claimName: s3-data
+      containers:
+        - resources: 
+            limits:
+              cpu: 1000m
+              memory: 2000Mi
+            requests:
+              cpu: 1000m
+              memory: 1000Mi
+          terminationMessagePath: /dev/termination-log
+          name: container
+          command:
+            - /bin/bash
+            - '-c'
+          ports:
+            - name: console
+              containerPort: 8080
+              protocol: TCP
+            - name: s3
+              containerPort: 9000
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: s3-data
+              mountPath: /data
+          terminationMessagePolicy: File
+          image: 'quay.io/minio/minio:latest'
+          args:
+            - 'minio server /data --console-address :8080'
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

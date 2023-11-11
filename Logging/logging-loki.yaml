@@ -1,0 +1,34 @@
+apiVersion: loki.grafana.com/v1
+kind: LokiStack
+metadata:
+  name: logging-loki
+  namespace: openshift-logging
+spec:
+  hashRing:
+    memberlist:
+      instanceAddrType: default
+    type: memberlist
+  limits:
+    global:
+      ingestion:
+        ingestionBurstSize: 16
+        ingestionRate: 8
+      queries:
+        queryTimeout: 3m
+      retention:
+        days: 5
+  managementState: Managed
+  size: 1x.small
+  storage:
+    schemas:
+      - effectiveDate: '2020-10-11'
+        version: v11
+    secret:
+      name: logging-loki-s3
+      type: s3
+    tls:
+      caKey: service-ca.crt
+      caName: s3-ca-cert
+  storageClassName: iscsi
+  tenants:
+    mode: openshift-logging
