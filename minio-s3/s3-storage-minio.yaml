@@ -10,12 +10,9 @@ spec:
       app: s3-storage-minio
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: s3-storage-minio
-      annotations:
-        openshift.openshift.io/restartedAt: '2023-11-07T18:16:58.785Z'
-    spec:
+      spec:
       volumes:
         - name: s3-data
           persistentVolumeClaim:
@@ -26,8 +23,8 @@ spec:
               cpu: 1000m
               memory: 2000Mi
             requests:
-              cpu: 1000m
-              memory: 1000Mi
+              cpu: 100m
+              memory: 300Mi
           terminationMessagePath: /dev/termination-log
           name: container
           command:

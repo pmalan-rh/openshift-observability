@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-workload-monitoring-config
+  namespace: openshift-user-workload-monitoring
+data:
+  config.yaml: |
+    prometheus:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: iscsi
+          resources:
+            requests:
+              storage: 100Gi
+      retention: 24h
+      retentionSize: 10GB
+    thanosRuler:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: iscsi
+          resources:
+            requests:
+              storage: 20Gi
+      retention: 10d

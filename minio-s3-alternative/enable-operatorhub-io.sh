@@ -1,0 +1,1 @@
+oc patch -n openshift-marketplace OperatorHub cluster --type merge -p '{"spec":{"sources":[{"name":"operatorhubio-catalog","disabled":false},{"name":"community-operators","disabled":false}]}}'

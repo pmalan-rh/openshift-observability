@@ -105,7 +105,7 @@ metadata:
   namespace: observability
 spec:
   mode: deployment
-  serviceAccount: otel-collector-deployment
+  serviceAccount: otel-collector
   config: |
     receivers:
       jaeger:

@@ -5,7 +5,7 @@ metadata:
   namespace: s3-storage
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 100Gi

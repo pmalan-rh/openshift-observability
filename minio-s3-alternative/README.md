@@ -1,0 +1,1 @@
+Since minio operator is not available anymore from the standard operators in Openshift out of the box, you can enable operatorhub.io to get access to minio operator.

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring
+data:
+  config.yaml: |
+    enableUserWorkload: true
+    k8sPrometheusAdapter:
+      dedicatedServiceMonitors:
+        enabled: true
+    prometheusK8s:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: iscsi
+          resources:
+            requests:
+              storage: 40Gi
+      enforcedBodySizeLimit: 40MB
+      dedicatedServiceMonitors:
+        enabled: true
+      retention: 24h
+      retentionSize: 10GB

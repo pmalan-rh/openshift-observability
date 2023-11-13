@@ -19,3 +19,7 @@ template:
       jaegerQuery:
         # Enable the Jaeger UI
         enabled: true
+        ingress:
+          route:
+            termination: edge
+          type: route
