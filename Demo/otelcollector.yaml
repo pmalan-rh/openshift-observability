@@ -1,4 +1,9 @@
-
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: otel-collector
+  namespace: quarkus-super-heroes
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
