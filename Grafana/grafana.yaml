@@ -1,0 +1,28 @@
+kind: Grafana
+apiVersion: grafana.integreatly.org/v1beta1
+metadata:
+  name: grafana
+  namespace: grafana
+spec:
+  ingress:
+    enabled: true
+  dataStorage:
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+    class: iscsi
+  config:
+    log:
+      mode: "console"
+      level: "warn"
+    security:
+      admin_user: "root"
+      admin_password: "secret"
+    auth:
+      disable_login_form: 'false'
+      disable_signout_menu: 'true'
+    auth.anonymous:
+      enabled: 'true'
+  dashboardLabelSelector:
+    - matchExpressions:
+        - {key: app, operator: In, values: [grafana]}
