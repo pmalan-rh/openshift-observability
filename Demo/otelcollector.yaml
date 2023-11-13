@@ -32,6 +32,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  generateName: tempostack-traces
   name: tempostack-traces
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -89,7 +90,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: otel-collector
+  generateName: otel-collector
 roleRef:
   kind: ClusterRole
   name: otel-collector
