@@ -12,7 +12,7 @@ spec:
     metadata:
       labels:
         app: s3-storage-minio
-      spec:
+    spec:
       volumes:
         - name: s3-data
           persistentVolumeClaim:
