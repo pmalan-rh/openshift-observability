@@ -7,15 +7,6 @@ spec:
   collection:
     type: vector
   logStore:
-    elasticsearch:
-      nodeCount: 3
-      proxy: {}
-      redundancyPolicy: SingleRedundancy
-      resources:
-        requests:
-          memory: 2Gi
-      storage:
-        size: 200G
     lokistack:
       name: logging-loki
     retentionPolicy:
